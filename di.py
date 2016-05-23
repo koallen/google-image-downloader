@@ -44,8 +44,9 @@ ua = UserAgent() # set user agent
 for link in soup.find_all("a", class_="rg_l"):
     headers = {"User-Agent": ua.random}
     try:
-        r = requests.get(link.get("href"), headers=headers)
+        r = requests.get("https://www.google.com" + link.get("href"), headers=headers)
     except:
+        print("Cannot get link")
         continue
     soup = BeautifulSoup(str(r.text), "html.parser")
     link = soup.title.string.split(" ")[-1]
@@ -53,5 +54,5 @@ for link in soup.find_all("a", class_="rg_l"):
     try:
         urllib.request.urlretrieve(link, "images/" + link.split("/")[-1])
     except:
-        pass
+        print("Images folder not created")
 
