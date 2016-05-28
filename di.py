@@ -10,14 +10,16 @@ from lxml.html import fromstring
 import os, sys
 
 def search(url):
-    # Get page source from browser
+    # Create a browser
     browser = webdriver.Chrome()
 
+    # Open the link
     browser.get(url)
     time.sleep(1)
 
     element = browser.find_element_by_tag_name("body")
 
+    # Scroll down
     for i in range(30):
         element.send_keys(Keys.PAGE_DOWN)
         time.sleep(0.2)
@@ -29,13 +31,18 @@ def search(url):
         time.sleep(0.2)
 
     time.sleep(1)
+    
+    # Get page source and close the browser
     source = browser.page_source
     browser.close()
 
     return source
 
 def download_image(link):
+    # Use a random user agent header
     headers = {"User-Agent": ua.random}
+    
+    # Get the image link
     try:
         r = requests.get("https://www.google.com" + link.get("href"), headers=headers)
     except:
@@ -43,6 +50,7 @@ def download_image(link):
     title = str(fromstring(r.content).findtext(".//title"))
     link = title.split(" ")[-1]
 
+    # Download the image
     print("Downloading from " + link)
     try:
         urllib.request.urlretrieve(link, "images/" + link.split("/")[-1])
@@ -50,10 +58,10 @@ def download_image(link):
         pass
 
 if __name__ == "__main__":
-    # set stack limit
+    # Set stack limit
     sys.setrecursionlimit(1000000)
 
-    # get user input and search on google
+    # Get user input and search on Google
     query = input("What to search? ")
     url = "https://www.google.com/search?as_st=y&tbm=isch&as_q=" + query + \
           "&as_epq=&as_oq=&as_eq=&cr=&as_sitesearch=&safe=images&tbs=isz:lt,islt:svga,itp:photo,ift:jpg"
@@ -61,8 +69,7 @@ if __name__ == "__main__":
 
     # Parse the page source and download pics
     soup = BeautifulSoup(str(source), "html.parser")
-
-    ua = UserAgent() # set user agent
+    ua = UserAgent()
 
     # check directory and create if necessary
     if not os.path.isdir("images"):
