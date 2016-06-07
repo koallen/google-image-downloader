@@ -18,6 +18,10 @@ usage: download_images.py [-h] keyword
 positional arguments:
   keyword     the keyword to search
 
-  optional arguments:
+optional arguments:
     -h, --help  show this help message and exit
+```
+Therefore, to search something, simply type
+```bash
+$ python3 download_images.py <your keyword>
 ```
