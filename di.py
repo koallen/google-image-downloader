@@ -1,6 +1,7 @@
 import requests
 import time
 import urllib
+import argparse
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
@@ -50,11 +51,16 @@ def download_image(link):
         pass
 
 if __name__ == "__main__":
+    # parse command line options
+    parser = argparse.ArgumentParser()
+    parser.add_argument("keyword", help="the keyword to search")
+    args = parser.parse_args()
+
     # set stack limit
     sys.setrecursionlimit(1000000)
 
     # get user input and search on google
-    query = input("What to search? ")
+    query = args.keyword
     url = "https://www.google.com/search?as_st=y&tbm=isch&as_q=" + query + \
           "&as_epq=&as_oq=&as_eq=&cr=&as_sitesearch=&safe=images&tbs=isz:lt,islt:svga,itp:photo,ift:jpg"
     source = search(url)
