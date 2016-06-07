@@ -9,6 +9,8 @@ The following Python packages are required to run the script.
 - fake_useragent
 - beautifulsoup4
 
+You can install then via `pip install -r requirements.txt`
+
 ## Usage
 Once you installed all the packages, run the script with `-h` argument to see how it works
 ```bash
