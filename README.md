@@ -9,8 +9,15 @@ The following Python packages are required to run the script.
 - fake_useragent
 - beautifulsoup4
 
-## Running the script
-Once you installed all the packages, run the script with
+## Usage
+Once you installed all the packages, run the script with `-h` argument to see how it works
 ```bash
-$ python3 di.py
+$ python3 download_images.py -h
+usage: download_images.py [-h] keyword
+
+positional arguments:
+  keyword     the keyword to search
+
+  optional arguments:
+    -h, --help  show this help message and exit
 ```
