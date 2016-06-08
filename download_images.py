@@ -78,8 +78,8 @@ if __name__ == "__main__":
     ua = UserAgent()
 
     # check directory and create if necessary
-    if not os.path.isdir("images"):
-        os.makedirs("images")
+    if not os.path.isdir(args.keyword):
+        os.makedirs(args.keyword)
 
     # get the links
     links = soup.find_all("a", class_="rg_l")
