@@ -1,5 +1,8 @@
-#Google Image Downloader
-A simple script that fetches images from Google with browser simulation
+# Google Image Downloader
+
+A simple script that fetches images from Google with browser simulation.
+
+> THIS REPO IS NOT ACTIVELY MAINTAINED!!
 
 ## Pre-requisites
 The following Python packages are required to run the script.
