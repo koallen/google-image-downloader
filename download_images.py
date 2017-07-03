@@ -85,5 +85,5 @@ if __name__ == "__main__":
     links = soup.find_all("a", class_="rg_l")
 
     # open some processes to download
-    with Pool() as pool:
+    with Pool(processes=4) as pool:
         pool.map(download_image, links)
