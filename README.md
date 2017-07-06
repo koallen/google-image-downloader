@@ -18,7 +18,7 @@ on how to install it.
 
 ## Usage
 
-```bash
+```
 usage: download_images.py [-h] [--worker WORKER] keyword
 
 positional arguments:
@@ -29,3 +29,6 @@ optional arguments:
   --worker WORKER  the number of workers used for downloading images
 ```
 
+## Disclaimer
+
+This script is written for the purpose of practicing programming skills. Use it at your own discretion.
