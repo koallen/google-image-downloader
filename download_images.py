@@ -1,6 +1,7 @@
 import requests
+from functools import partial
 import time
-import urllib
+import urllib.request
 import argparse
 from bs4 import BeautifulSoup
 from selenium import webdriver
@@ -39,7 +40,7 @@ def search(url):
 
     return source
 
-def download_image(link):
+def download_image(dest, link):
     # Use a random user agent header
     headers = {"User-Agent": ua.random}
 
@@ -54,7 +55,7 @@ def download_image(link):
     # Download the image
     print("Downloading from " + link)
     try:
-        urllib.request.urlretrieve(link, "images/" + link.split("/")[-1])
+        filename = urllib.request.urlretrieve(link, dest + "/" + link.split("/")[-1])
     except:
         pass
 
@@ -86,4 +87,5 @@ if __name__ == "__main__":
 
     # open some processes to download
     with Pool(processes=args.worker) as pool:
-        pool.map(download_image, links)
+        func = partial(download_image, args.keyword)
+        pool.map(func, links)
