@@ -8,7 +8,7 @@ from selenium.webdriver.common.keys import Keys
 from fake_useragent import UserAgent
 from multiprocessing import Pool
 from lxml.html import fromstring
-import os, sys
+import os
 
 def search(url):
     # Create a browser
@@ -45,7 +45,7 @@ def download_image(link):
 
     # Get the image link
     try:
-        r = requests.get("https://www.google.com" + link.get("href"), headers=headers)
+        r = requests.get("https://www.google.com" + link, headers=headers)
     except:
         print("Cannot get link.")
     title = str(fromstring(r.content).findtext(".//title"))
@@ -62,10 +62,9 @@ if __name__ == "__main__":
     # parse command line options
     parser = argparse.ArgumentParser()
     parser.add_argument("keyword", help="the keyword to search")
+    parser.add_argument("--worker", help="the number of workers used for downloading images",
+            type=int, default=1)
     args = parser.parse_args()
-
-    # set stack limit
-    sys.setrecursionlimit(1000000)
 
     # get user input and search on google
     query = args.keyword
@@ -83,7 +82,8 @@ if __name__ == "__main__":
 
     # get the links
     links = soup.find_all("a", class_="rg_l")
+    links = [link.get("href") for link in links]
 
     # open some processes to download
-    with Pool(processes=4) as pool:
+    with Pool(processes=args.worker) as pool:
         pool.map(download_image, links)

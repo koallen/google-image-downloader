@@ -18,22 +18,14 @@ on how to install it.
 
 ## Usage
 
-Once you installed all the packages, run the script with `-h` argument to see how it works
-
 ```bash
-$ python3 download_images.py -h
-usage: download_images.py [-h] keyword
+usage: download_images.py [-h] [--worker WORKER] keyword
 
 positional arguments:
-  keyword     the keyword to search
+  keyword          the keyword to search
 
 optional arguments:
-    -h, --help  show this help message and exit
-```
-
-Therefore, to search something, simply type
-
-```bash
-$ python3 download_images.py <your keyword>
+  -h, --help       show this help message and exit
+  --worker WORKER  the number of workers used for downloading images
 ```
 
