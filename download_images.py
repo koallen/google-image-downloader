@@ -78,8 +78,9 @@ if __name__ == "__main__":
     ua = UserAgent()
 
     # check directory and create if necessary
-    if not os.path.isdir(args.keyword):
-        os.makedirs(args.keyword)
+    dest = "images/" + args.keyword
+    if not os.path.isdir(dest):
+        os.makedirs(dest)
 
     # get the links
     links = soup.find_all("a", class_="rg_l")
@@ -87,5 +88,5 @@ if __name__ == "__main__":
 
     # open some processes to download
     with Pool(processes=args.worker) as pool:
-        func = partial(download_image, args.keyword)
+        func = partial(download_image, dest)
         pool.map(func, links)
