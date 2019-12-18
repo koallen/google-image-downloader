@@ -4,7 +4,7 @@
 
 ## Pre-requisites
 
-The following Python packages are required to run the script.
+The code requires Python 3. The following Python packages are required to run the script.
 
 - selenium
 - requests
