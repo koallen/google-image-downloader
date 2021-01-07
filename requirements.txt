@@ -1,5 +1,5 @@
 beautifulsoup4==4.4.1
 fake-useragent==0.1.7
-lxml==3.8.0
+lxml==4.6.2
 requests==2.20.0
 selenium==2.52.0
